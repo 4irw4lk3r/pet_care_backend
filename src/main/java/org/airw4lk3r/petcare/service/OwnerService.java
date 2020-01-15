@@ -12,11 +12,12 @@ import org.springframework.stereotype.Service;
  * OwnerService
  */
 @Service
-public class OwnerService {
+public class OwnerService implements IService<Owner, Long> {
 
     @Autowired
     OwnerRepository oRepository;
 
+    @Override
     public List<Owner> getAll() {
         final List<Owner> owners = new ArrayList<Owner>();
         oRepository.findAll().forEach(r -> owners.add(r));
@@ -24,11 +25,13 @@ public class OwnerService {
         return owners;
     }
 
+    @Override
     public Owner getById(final Long id) {
         return oRepository.findById(id).get();
     }
 
-    public void createOrModifyOwner(final Owner owner) {
+    @Override
+    public void createOrModify(final Owner owner) {
         oRepository.save(owner);
     }
 }
