@@ -40,6 +40,6 @@ public class PetController {
     
     @RequestMapping(value="/v1/", method=RequestMethod.POST)
     public void saveOrUpdatePet(@Valid @RequestBody final Pet pet){
-        petService.createOrmodifyPet(pet);
+        petService.createOrModify(pet);
     }
 }
