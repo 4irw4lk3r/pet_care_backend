@@ -30,7 +30,7 @@ public class Pet {
     @Column(name = "species", nullable = false)
     private Species species;
     
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "owner_id")
     private Owner owner;
 

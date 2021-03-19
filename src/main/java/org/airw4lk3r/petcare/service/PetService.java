@@ -15,9 +15,9 @@ import org.springframework.stereotype.Service;
 public class PetService implements IService<Pet, Long> {
 
     PetRepository pRepository;
-
+ 
     public PetService(final PetRepository pRepository) {
-        this.pRepository = pRepository;
+        this.pRepository = pRepository;        
     }
 
     @Override
@@ -35,6 +35,8 @@ public class PetService implements IService<Pet, Long> {
 
     @Override
     public void createOrModify(final Pet pet) {
+        /*Owner o = oRepository.findById(pet.getOwner().getId()).get();
+        pet.setOwner(o); //*/
         pRepository.save(pet);
     }
 }

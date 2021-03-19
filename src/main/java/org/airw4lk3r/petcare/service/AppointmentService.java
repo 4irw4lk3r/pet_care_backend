@@ -5,16 +5,18 @@ import java.util.List;
 
 import org.airw4lk3r.petcare.model.appointment.Appointment;
 import org.airw4lk3r.petcare.repository.AppointmentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
  * AppointmentService
  */
 @Service
-public class AppointmentService implements IService<Appointment, Long> {
+public class AppointmentService implements IService<Appointment, Long>, IAppointmentService<Appointment, Long> {
 
-    private AppointmentRepository aRepository;
+    private final AppointmentRepository aRepository;
 
+    @Autowired
     public AppointmentService(AppointmentRepository aRepository) {
         this.aRepository = aRepository;
     }
@@ -33,9 +35,16 @@ public class AppointmentService implements IService<Appointment, Long> {
     }
 
     @Override
-    public void createOrModify(final Appointment appointment) {
+    public void createOrModify(final Appointment appointment) {       
         aRepository.save(appointment);
     }
 
-    
+    @Override
+    public List<Appointment> getAllByPetId(final Long petId) {
+        final List<Appointment> appointments = new ArrayList<>();
+        aRepository.findByPetId(petId).forEach(appointments::add);
+
+        return appointments;
+    }
+
 }

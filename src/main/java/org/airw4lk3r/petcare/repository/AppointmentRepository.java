@@ -1,5 +1,7 @@
 package org.airw4lk3r.petcare.repository;
 
+import java.util.List;
+
 import org.airw4lk3r.petcare.model.appointment.Appointment;
 import org.springframework.data.repository.CrudRepository;
 
@@ -8,5 +10,6 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface AppointmentRepository extends CrudRepository<Appointment, Long>{
 
+        List<Appointment> findByPetId(Long id);
     
 }

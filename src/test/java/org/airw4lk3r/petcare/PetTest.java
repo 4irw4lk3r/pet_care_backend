@@ -1,4 +1,4 @@
-package org.airw4lk3r.petcare;
+/*package org.airw4lk3r.petcare;
 
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -11,6 +11,7 @@ import java.util.List;
 import org.airw4lk3r.petcare.model.pet.Pet;
 import org.airw4lk3r.petcare.model.pet.Species;
 import org.airw4lk3r.petcare.service.PetService;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -28,6 +29,7 @@ public abstract class PetTest {
 	@MockBean
 	private PetService petService;
 
+	@Test
 	public void findAll() throws Exception{
 		Pet pet = new Pet();
 
@@ -49,3 +51,4 @@ public abstract class PetTest {
 
 
 }
+//*/
