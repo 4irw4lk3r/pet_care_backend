@@ -24,6 +24,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
+import org.airw4lk3r.petcare.model.enums.ProcedureEnum;
 import org.airw4lk3r.petcare.model.pet.Pet;
 
 /**
@@ -50,11 +51,11 @@ public class Appointment {
 
     private String observations;
 
-    @ElementCollection(targetClass = Procedure.class)
+    @ElementCollection(targetClass = ProcedureEnum.class)
     @Enumerated(EnumType.STRING)
     @Column(name = "procedures")
     @JoinTable(name = "appointment_procedures", joinColumns = { @JoinColumn(name = "appointment_id") })
-    private List<Procedure> procedures;
+    private List<ProcedureEnum> procedures;
 
     public Long getId() {
         return this.id;
@@ -88,11 +89,11 @@ public class Appointment {
         this.observations = observations;
     }
 
-    public List<Procedure> getProcedures() {
+    public List<ProcedureEnum> getProcedures() {
         return this.procedures;
     }
 
-    public void setProcedures(List<Procedure> procedures) {
+    public void setProcedures(List<ProcedureEnum> procedures) {
         this.procedures = procedures;
     }
 

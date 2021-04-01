@@ -1,9 +1,12 @@
 package org.airw4lk3r.petcare.service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.airw4lk3r.petcare.model.medicalhistory.MedicalHistory;
 import org.airw4lk3r.petcare.model.pet.Pet;
+import org.airw4lk3r.petcare.repository.MedicalHistoryRepository;
 import org.airw4lk3r.petcare.repository.PetRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +18,11 @@ import org.springframework.stereotype.Service;
 public class PetService implements IService<Pet, Long> {
 
     PetRepository pRepository;
- 
-    public PetService(final PetRepository pRepository) {
-        this.pRepository = pRepository;        
+    MedicalHistoryRepository mhRepository;
+
+    public PetService(final PetRepository pRepository, final MedicalHistoryRepository mhRepository) {
+        this.pRepository = pRepository;
+        this.mhRepository = mhRepository;
     }
 
     @Override
@@ -35,8 +40,12 @@ public class PetService implements IService<Pet, Long> {
 
     @Override
     public void createOrModify(final Pet pet) {
-        /*Owner o = oRepository.findById(pet.getOwner().getId()).get();
-        pet.setOwner(o); //*/
-        pRepository.save(pet);
+        Pet nPet = pRepository.save(pet);
+
+        MedicalHistory mh = new MedicalHistory();
+        mh.setCreateDate(LocalDate.now());
+        mh.setPet(nPet);
+
+        mhRepository.save(mh);
     }
 }

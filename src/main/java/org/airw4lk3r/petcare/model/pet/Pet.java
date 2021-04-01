@@ -13,13 +13,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.airw4lk3r.petcare.model.enums.SpeciesEnum;
+
 @Entity(name = "Pet")
 @Table(name = "Pet")
 public class Pet {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "pet_sequence")
-    @SequenceGenerator(name="pet_sequence", sequenceName="seq_pet")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pet_sequence")
+    @SequenceGenerator(name = "pet_sequence", sequenceName = "seq_pet")
     @Column(name = "pet_id")
     private Long id;
 
@@ -28,8 +30,8 @@ public class Pet {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "species", nullable = false)
-    private Species species;
-    
+    private SpeciesEnum species;
+
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "owner_id")
     private Owner owner;
@@ -53,11 +55,11 @@ public class Pet {
         this.name = name;
     }
 
-    public Species getSpecies() {
+    public SpeciesEnum getSpecies() {
         return this.species;
     }
 
-    public void setSpecies(Species species) {
+    public void setSpecies(SpeciesEnum species) {
         this.species = species;
     }
 
