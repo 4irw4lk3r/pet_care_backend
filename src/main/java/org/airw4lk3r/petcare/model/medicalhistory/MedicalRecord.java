@@ -33,4 +33,37 @@ public class MedicalRecord {
 
     @Column(name = "obervations")
     private String observations;
+
+    public String getObservations() {
+        return this.observations;
+    }
+
+    public void setObservations(String observations) {
+        this.observations = observations;
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<ProcedureEnum> getProcedures() {
+        return this.procedures;
+    }
+
+    public void setProcedures(List<ProcedureEnum> procedures) {
+        this.procedures = procedures;
+    }
+
+    public Double getWeight() {
+        return this.weight;
+    }
+
+    public void setWeight(Double weight) {
+        this.weight = weight;
+    }
+
 }
