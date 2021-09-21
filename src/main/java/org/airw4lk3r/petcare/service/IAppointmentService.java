@@ -2,6 +2,8 @@ package org.airw4lk3r.petcare.service;
 
 import java.util.List;
 
-public interface IAppointmentService<T,ID> {
-    public List<T> getAllByPetId(final ID petId);
+import org.airw4lk3r.petcare.model.appointment.Appointment;
+
+public interface IAppointmentService {
+    public List<Appointment> getAllByPetId(final Long id);
 }

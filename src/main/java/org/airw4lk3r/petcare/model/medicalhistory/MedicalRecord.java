@@ -2,8 +2,10 @@ package org.airw4lk3r.petcare.model.medicalhistory;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
@@ -11,10 +13,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 import org.airw4lk3r.petcare.model.enums.ProcedureEnum;
 
+@Entity(name = "MedicalRecord")
+@Table(name = "MedicalRecord")
 public class MedicalRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "mr_sequence")
@@ -28,11 +34,23 @@ public class MedicalRecord {
     @ElementCollection(targetClass = ProcedureEnum.class)
     @Enumerated(EnumType.STRING)
     @Column(name = "procedures")
-    @JoinTable(name = "appointment_procedures", joinColumns = { @JoinColumn(name = "appointment_id") })
+    @JoinTable(name = "records_procedures", joinColumns = { @JoinColumn(name = "record_id") })
     private List<ProcedureEnum> procedures;
 
-    @Column(name = "obervations")
+    @Column(name = "observations")
     private String observations;
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "medical_history_id")
+    private MedicalHistory archive;
+
+    public MedicalHistory getArchive() {
+        return this.archive;
+    }
+
+    public void setArchive(MedicalHistory archive) {
+        this.archive = archive;
+    }
 
     public String getObservations() {
         return this.observations;

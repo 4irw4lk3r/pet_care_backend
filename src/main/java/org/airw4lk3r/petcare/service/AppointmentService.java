@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * AppointmentService
  */
 @Service
-public class AppointmentService implements IService<Appointment, Long>, IAppointmentService<Appointment, Long> {
+public class AppointmentService implements IService<Appointment, Long>, IAppointmentService {
 
     private final AppointmentRepository aRepository;
 
@@ -42,7 +42,7 @@ public class AppointmentService implements IService<Appointment, Long>, IAppoint
     @Override
     public List<Appointment> getAllByPetId(final Long petId) {
         final List<Appointment> appointments = new ArrayList<>();
-        aRepository.findByPetId(petId).forEach(appointments::add);
+        aRepository.findAllByPetId(petId).forEach(appointments::add);
 
         return appointments;
     }

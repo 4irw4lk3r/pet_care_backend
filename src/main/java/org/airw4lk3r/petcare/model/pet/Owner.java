@@ -17,8 +17,8 @@ import javax.persistence.Table;
 public class Owner {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "owner_sequence")
-    @SequenceGenerator(name="owner_sequence", sequenceName="seq_owner")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "owner_sequence")
+    @SequenceGenerator(name = "owner_sequence", sequenceName = "seq_owner")
     @Column(name = "owner_id")
     private Long id;
 
@@ -31,18 +31,10 @@ public class Owner {
     @Column(name = "age")
     private Integer age;
 
-    @OneToMany(
-        cascade = CascadeType.ALL,
-        orphanRemoval = true,
-        mappedBy = "owner"
-    )
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "owner")
     private List<Contact> contacts;
 
-    @OneToMany(
-        cascade = CascadeType.ALL,
-        orphanRemoval = true,
-        mappedBy = "owner"
-    )
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "owner")
     private List<Pet> pets;
 
     public Long getId() {
@@ -77,20 +69,17 @@ public class Owner {
         this.age = age;
     }
 
-    /*public List<Contact> getContacts() {
-        return this.contacts;
-    }
+    /*
+     * public List<Contact> getContacts() { return this.contacts; }
+     * 
+     * public void setContacts(List<Contact> contacts) { this.contacts = contacts;
+     * }//
+     */
 
-    public void setContacts(List<Contact> contacts) {
-        this.contacts = contacts;
-    }//*/
-
-    /*public List<Pet> getPets() {
-        return this.pets;
-    }
-
-    public void setPets(List<Pet> pets) {
-        this.pets = pets;
-    }//*/
+    /*
+     * public List<Pet> getPets() { return this.pets; }
+     * 
+     * public void setPets(List<Pet> pets) { this.pets = pets; }//
+     */
 
 }

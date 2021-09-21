@@ -8,8 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 /**
  * AppointmentRepository
  */
-public interface AppointmentRepository extends CrudRepository<Appointment, Long>{
+public interface AppointmentRepository extends CrudRepository<Appointment, Long> {
+        List<Appointment> findAllByPetId(Long id);
 
-        List<Appointment> findByPetId(Long id);
-    
 }

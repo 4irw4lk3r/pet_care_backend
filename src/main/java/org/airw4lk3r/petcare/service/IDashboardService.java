@@ -2,7 +2,9 @@ package org.airw4lk3r.petcare.service;
 
 import java.util.List;
 
-public interface IDashboardService<T,ID> {
+import org.airw4lk3r.petcare.model.dto.DashboardDTO;
+
+public interface IDashboardService {
     
-    public List<T> getSumaryPetInfo(final ID ownerId);
+    public List<DashboardDTO> getSumaryPetInfo(final Long ownerId);
 }
